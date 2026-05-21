@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InstructionView: View {
+struct Instructions: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -47,7 +47,7 @@ struct InstructionView: View {
                 .foregroundStyle(.black)
         
                 Button("Done") {
-                    
+                    dismiss()
                 }
                 .font(.largeTitle)
                 .padding()
@@ -59,5 +59,5 @@ struct InstructionView: View {
 }
 
 #Preview {
-    InstructionView()
+    Instructions()
 }
