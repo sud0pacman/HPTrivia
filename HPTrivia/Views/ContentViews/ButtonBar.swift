@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct ButtonBar: View {
+    @Binding var animationViewsIn: Bool
+    
+    let geo: GeometryProxy
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            
+            Spacer()
+            
+            InstructionsButton(animationViewsIn: $animationViewsIn, geo: geo)
+            
+            Spacer()
+            
+            PlayButton(animationViewsIn: $animationViewsIn, geo: geo)
+            
+            Spacer()
+            
+            SettingsButton(animationViewsIn: $animationViewsIn, geo: geo)
+            
+            Spacer()
+        }
+        .frame(width: geo.size.width)
     }
 }
 
 #Preview {
-    ButtonBar()
+    GeometryReader { geo in
+        ButtonBar(animationViewsIn: .constant(true), geo: geo)
+    }
 }

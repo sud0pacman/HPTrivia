@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct GameTitle: View {
+    @Binding var animationViewsIn: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if animationViewsIn {
+                VStack {
+                    Image(systemName: "bolt.fill")
+                        .font(.largeTitle)
+                    
+                    Text("HP")
+                        .font(.custom("PartyletPlain", size: 70))
+                        .padding(.bottom, -50)
+                    
+                    Text("Trivia")
+                        .font(.custom("PartyletPlain", size: 60))
+                }
+                .padding(.top, 70)
+                .transition(.move(edge: .top))
+            }
+        }
+        .animation(.easeOut(duration: 0.7).delay(2), value: animationViewsIn)
     }
 }
 
 #Preview {
-    GameTitle()
+    GameTitle(animationViewsIn: .constant(true))
 }
