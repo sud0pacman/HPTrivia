@@ -6,14 +6,38 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		528733522FBF2964001DBD52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287334F2FBF2964001DBD52 /* ContentView.swift */; };
+		528733532FBF2964001DBD52 /* HPTriviaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528733502FBF2964001DBD52 /* HPTriviaApp.swift */; };
+		528733542FBF2964001DBD52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5287334E2FBF2964001DBD52 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		528733402FBF28FF001DBD52 /* HPTrivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HPTrivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5287334E2FBF2964001DBD52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5287334F2FBF2964001DBD52 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		528733502FBF2964001DBD52 /* HPTriviaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPTriviaApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		528733422FBF28FF001DBD52 /* HPTrivia */ = {
+		528733552FBF29CC001DBD52 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HPTrivia;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		528733562FBF29D5001DBD52 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		528733572FBF29E5001DBD52 /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		528733582FBF29F2001DBD52 /* Support */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +56,7 @@
 		528733372FBF28FF001DBD52 = {
 			isa = PBXGroup;
 			children = (
-				528733422FBF28FF001DBD52 /* HPTrivia */,
+				528733512FBF2964001DBD52 /* HPTrivia */,
 				528733412FBF28FF001DBD52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +67,20 @@
 				528733402FBF28FF001DBD52 /* HPTrivia.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		528733512FBF2964001DBD52 /* HPTrivia */ = {
+			isa = PBXGroup;
+			children = (
+				528733552FBF29CC001DBD52 /* Models */,
+				528733582FBF29F2001DBD52 /* Support */,
+				528733572FBF29E5001DBD52 /* ViewModels */,
+				528733562FBF29D5001DBD52 /* Views */,
+				5287334E2FBF2964001DBD52 /* Assets.xcassets */,
+				5287334F2FBF2964001DBD52 /* ContentView.swift */,
+				528733502FBF2964001DBD52 /* HPTriviaApp.swift */,
+			);
+			path = HPTrivia;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -61,7 +99,10 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				528733422FBF28FF001DBD52 /* HPTrivia */,
+				528733552FBF29CC001DBD52 /* Models */,
+				528733562FBF29D5001DBD52 /* Views */,
+				528733572FBF29E5001DBD52 /* ViewModels */,
+				528733582FBF29F2001DBD52 /* Support */,
 			);
 			name = HPTrivia;
 			packageProductDependencies = (
@@ -109,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528733542FBF2964001DBD52 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528733522FBF2964001DBD52 /* ContentView.swift in Sources */,
+				528733532FBF2964001DBD52 /* HPTriviaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +303,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -273,7 +317,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -291,8 +335,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,7 +349,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
