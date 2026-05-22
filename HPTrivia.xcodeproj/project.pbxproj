@@ -18,6 +18,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		528484362FC0517E0027834E /* Classes */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		528733552FBF29CC001DBD52 /* Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Models;
@@ -70,6 +75,7 @@
 		528733512FBF2964001DBD52 /* HPTrivia */ = {
 			isa = PBXGroup;
 			children = (
+				528484362FC0517E0027834E /* Classes */,
 				528733552FBF29CC001DBD52 /* Models */,
 				528733582FBF29F2001DBD52 /* Support */,
 				528733572FBF29E5001DBD52 /* ViewModels */,
@@ -96,6 +102,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				528484362FC0517E0027834E /* Classes */,
 				528733552FBF29CC001DBD52 /* Models */,
 				528733562FBF29D5001DBD52 /* Views */,
 				528733572FBF29E5001DBD52 /* ViewModels */,
