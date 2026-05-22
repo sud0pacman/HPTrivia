@@ -51,6 +51,6 @@ class BookQuestions {
         books.append(Book(id: 4, image: "hp4", questions: questions[4], status: .locked))
         books.append(Book(id: 5, image: "hp5", questions: questions[5], status: .locked))
         books.append(Book(id: 6, image: "hp6", questions: questions[6], status: .locked))
-        books.append(Book(id: 7, image: "hp7", questions: questions[7], status: .locked))
+        books.append(Book(id: 7, image: "hp7", questions: questions[7], status: .locked ))
     }
 }
