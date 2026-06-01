@@ -13,7 +13,7 @@ class Game {
     
     var gameScore = 0
     var questionScore = 0
-    var recentScores = [0, 0, 0]
+    var recentScores = Array(repeating: 0, count: 3)
     
     var activeQuestion: [Question] = []
     var answeredQuestions: [Int] = []

@@ -23,7 +23,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    RecentScores(animationViewsIn: $animationViewsIn)
+                    RecentScores(animateViewsIn: $animationViewsIn)
                     
                     Spacer()
                     

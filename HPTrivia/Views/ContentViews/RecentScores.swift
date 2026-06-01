@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct RecentScores: View {
-    @Binding var animationViewsIn: Bool
+    @Environment(Game.self) private var game
+    @Binding var animateViewsIn: Bool
     
     var body: some View {
         VStack {
-            if animationViewsIn {
+            if animateViewsIn {
                 VStack {
                     Text("Recent Scores")
                         .font(.title2)
                     
-                    Text("33")
-                    Text("27")
-                    Text("15")
+                    Text("\(game.recentScores[0])")
+                    Text("\(game.recentScores[1])")
+                    Text("\(game.recentScores[2])")
                 }
                 .font(.title)
                 .foregroundStyle(.white)
@@ -29,10 +30,11 @@ struct RecentScores: View {
                 .transition(.opacity)
             }
         }
-        .animation(.linear(duration: 1).delay(4), value: animationViewsIn)
+        .animation(.linear(duration: 1).delay(4), value: animateViewsIn)
     }
 }
 
 #Preview {
-    RecentScores(animationViewsIn: .constant(true))
+    RecentScores(animateViewsIn: .constant(true))
+        .environment(Game())
 }
