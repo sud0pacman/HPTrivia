@@ -17,6 +17,8 @@ struct GamePlay: View {
     
     @State private var animateViewsIn: Bool = false
     
+    @State private var revealHint = false
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -60,8 +62,54 @@ struct GamePlay: View {
                     Spacer()
                     
                     // MARK: Hints
+                    HStack {
+                        VStack {
+                            if animateViewsIn {
+                                Image(systemName: "questionmark.app.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100)
+                                    .foregroundStyle(.cyan)
+                                    .padding()
+                                    .transition(.offset(x: -geo.size.width / 2))
+                                    .phaseAnimator([false, true]) { content, phase in
+                                        content
+                                            .rotationEffect(.degrees(phase ? -13 : -17))
+                                    } animation: { _ in
+                                            .easeInOut(duration: 0.7)
+                                    }
+                                    .onTapGesture {
+                                        withAnimation(.easeOut(duration: 1)) {
+                                            revealHint = true
+                                        }
+                                        playFlipSound()
+                                        game.questionScore -= 1
+                                    }
+                                    .rotation3DEffect(.degrees(revealHint ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
+                                    .scaleEffect(revealHint ? 5 : 1)
+                                    .offset(x: revealHint ? geo.size.width / 2 : 0)
+                                    .opacity(revealHint ? 0 : 1)
+                                    .overlay {
+                                        Text(game.currentQuestion.hint)
+                                            .padding(.leading, 20)
+                                            .minimumScaleFactor(0.5)
+                                            .multilineTextAlignment(.center)
+                                            .opacity(revealHint ? 1 : 0)
+                                            .scaleEffect(revealHint ? 1.33 : 0)
+                                    }
+                            }
+                        }
+                        .animation(.easeOut(duration: 1.5).delay(0.5), value: animateViewsIn)
+                        
+                        Spacer()
+                        
+                        
+                    }
+                    .padding()
                     
                     // MARK: Answers
+                    
+                    Spacer()
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 .foregroundStyle(.white)
@@ -99,14 +147,12 @@ struct GamePlay: View {
     private func playFlipSound() {
         let sound = Bundle.main.path(forResource: "page-flip", ofType: "mp3")
         sfxPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-        sfxPlayer.numberOfLoops = -1
         sfxPlayer.play()
     }
     
     private func playwrongSound() {
         let sound = Bundle.main.path(forResource: "negative-beeps", ofType: "mp3")
         sfxPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-        sfxPlayer.numberOfLoops = -1
         sfxPlayer.play()
     }
     
