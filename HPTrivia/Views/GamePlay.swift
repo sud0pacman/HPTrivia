@@ -65,7 +65,7 @@ struct GamePlay: View {
                                     .transition(.scale)
                             }
                         }
-                        .animation(.easeInOut(duration: 2), value: animateViewsIn)
+                        .animation(.easeInOut(duration: animateViewsIn ? 2 : 0), value: animateViewsIn)
                         
                         Spacer()
                         
@@ -107,7 +107,7 @@ struct GamePlay: View {
                                         }
                                 }
                             }
-                            .animation(.easeOut(duration: 1.5).delay(0.5), value: animateViewsIn)
+                            .animation(.easeOut(duration: animateViewsIn ? 1.5 : 0).delay(animateViewsIn ? 0.5 : 0), value: animateViewsIn)
                             
                             Spacer()
                             
@@ -154,7 +154,7 @@ struct GamePlay: View {
                                         }
                                 }
                             }
-                            .animation(.easeOut(duration: 1.5).delay(0.5), value: animateViewsIn)
+                            .animation(.easeOut(duration: animateViewsIn ? 1.5 : 0).delay(animateViewsIn ? 0.5 : 0), value: animateViewsIn)
                             
                         }
                         .padding()
@@ -190,7 +190,7 @@ struct GamePlay: View {
                                             }
                                         }
                                     }
-                                    .animation(.easeOut(duration: 1).delay(1.5), value: animateViewsIn)
+                                    .animation(.easeOut(duration: animateViewsIn ? 1 : 0).delay(animateViewsIn ? 1.5 : 0), value: animateViewsIn)
                                 } else {
                                     VStack {
                                         if animateViewsIn {
@@ -216,7 +216,7 @@ struct GamePlay: View {
                                             .disabled(wrongAnswersTapped.contains(answer))
                                         }
                                     }
-                                    .animation(.easeInOut(duration: 1).delay(1.5), value: animateViewsIn)
+                                    .animation(.easeInOut(duration: animateViewsIn ? 1 : 0).delay(animateViewsIn ? 1.5 : 0), value: animateViewsIn)
                                 }
                             }
                         }
@@ -243,13 +243,13 @@ struct GamePlay: View {
                                         y: movePointsToScore ? -geo.size.height / 13 : 0)
                                 .opacity(movePointsToScore ? 0 : 1)
                                 .onAppear {
-                                    withAnimation(.easeInOut(duration: 1).delay(3)) {
+                                    withAnimation(.easeInOut(duration: 1).delay(animateViewsIn ? 3 : 0)) {
                                         movePointsToScore = true
                                     }
                                 }
                         }
                     }
-                    .animation(.easeInOut(duration: 1).delay(2), value: tappedCorrectAnswer)
+                    .animation(.easeInOut(duration: animateViewsIn ? 1 : 0).delay(animateViewsIn ? 2 : 0), value: tappedCorrectAnswer)
                     
                     Spacer()
                     
@@ -260,7 +260,7 @@ struct GamePlay: View {
                                 .transition(.scale.combined(with: .offset(y: -geo.size.height / 2)))
                         }
                     }
-                    .animation(.easeOut(duration: 1).delay(1), value: tappedCorrectAnswer)
+                    .animation(.easeOut(duration: tappedCorrectAnswer ? 1 : 0).delay(tappedCorrectAnswer ? 1 : 0), value: tappedCorrectAnswer)
                     
                     Spacer()
                     
@@ -281,7 +281,17 @@ struct GamePlay: View {
                     VStack {
                         if tappedCorrectAnswer {
                             Button("Next Level >") {
+                                animateViewsIn = false
+                                revealHint = false
+                                revealBook = false
+                                tappedCorrectAnswer = false
+                                wrongAnswersTapped = []
+                                movePointsToScore = false
+                                game.newQuestion()
                                 
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    animateViewsIn = true
+                                }
                             }
                             .font(.largeTitle)
                             .buttonStyle(.borderedProminent)
@@ -295,7 +305,7 @@ struct GamePlay: View {
                             }
                         }
                     }
-                    .animation(.easeInOut(duration: 2.7).delay(2.7), value: tappedCorrectAnswer)
+                    .animation(.easeInOut(duration: tappedCorrectAnswer ? 2.7 : 0).delay(tappedCorrectAnswer ? 2.7 : 0), value: tappedCorrectAnswer)
                     
                     Spacer()
                     Spacer()

@@ -22,11 +22,11 @@ struct HPTriviaApp: App {
 /**
  App Development
   ✅ Game Intro Screen
-  🟪 Gameplay Screen
-  🟪 Game logic (question, score, etc.)
-  - Celebration
-  🟪 Audio
-  🟪 Animations
+  ✅ Gameplay Screen
+  🟦 Game logic (question, score, etc.)
+  ✅ Celebration
+  ✅ Audio
+  ✅ Animations
   - In app purchases
   - Store
   ✅ Instruction screen
