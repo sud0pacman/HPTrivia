@@ -337,7 +337,7 @@ struct GamePlay: View {
         musicPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
         musicPlayer.numberOfLoops = -1
         musicPlayer.volume = 0.1
-//        musicPlayer.play()
+        musicPlayer.play()
     }
     
     private func playFlipSound() {

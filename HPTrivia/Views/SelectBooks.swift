@@ -73,6 +73,8 @@ struct SelectBooks: View {
                 }
         
                 Button("Done") {
+                    game.bookQuestion.saveStatus()
+                    
                     dismiss()
                 }
                 .font(.largeTitle)
@@ -82,7 +84,7 @@ struct SelectBooks: View {
                 .disabled(!activeBooks)
             }
         }
-        .interactiveDismissDisabled(!activeBooks)
+        .interactiveDismissDisabled()
         .task {
             await store.loadProducts()
         }
