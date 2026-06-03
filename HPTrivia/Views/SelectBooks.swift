@@ -11,8 +11,6 @@ struct SelectBooks: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(Game.self) private var game
     
-    @State private var showTempAlert: Bool = false
-    
     private var store = Store()
     
     private var activeBooks: Bool {
@@ -41,8 +39,11 @@ struct SelectBooks: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(), GridItem()]) {
                         ForEach(game.bookQuestion.books) { book in
-                            if book.status == .active {
+                            if book.status == .active || (book.status == .locked && store.purchased.contains(book.image)) {
                                 ActiveBook(book: book)
+                                    .task {
+                                        game.bookQuestion.changeStatus(of: book.id, to: .active)
+                                    }
                                     .onTapGesture {
                                         game.bookQuestion.changeStatus(of: book.id, to: .inactive)
                                     }
@@ -54,9 +55,11 @@ struct SelectBooks: View {
                             } else {
                                 LockedBook(book: book)
                                     .onTapGesture {
-                                        showTempAlert.toggle()
+                                        let product = store.products[book.id - 4]
                                         
-                                        game.bookQuestion.changeStatus(of: book.id, to: .active)
+                                        Task {
+                                            await store.purchase(product)
+                                        }
                                     }
                             }
                         }
@@ -80,9 +83,6 @@ struct SelectBooks: View {
             }
         }
         .interactiveDismissDisabled(!activeBooks)
-        .alert("You purchased a new question pack. Yay!", isPresented: $showTempAlert) {
-            
-        }
         .task {
             await store.loadProducts()
         }
