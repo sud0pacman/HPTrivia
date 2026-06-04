@@ -69,6 +69,7 @@ class Game {
     }
     
     func endGame() {
+        recentScores.append(recentScores[2])
         recentScores[2] = recentScores[1]
         recentScores[1] = recentScores[0]
         recentScores[0] = PlayerScore(score: gameScore, name: playerName)

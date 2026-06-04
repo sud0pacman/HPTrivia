@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var playGame = false
     @State private var name = ""
     @State private var openGameScreen: Bool = false
+    @State private var openRecentScores: Bool = false
     
     var body: some View {
         GeometryReader { geo in
@@ -27,6 +28,9 @@ struct ContentView: View {
                     Spacer()
                     
                     RecentScores(animateViewsIn: $animationViewsIn)
+                        .onTapGesture {
+                            openRecentScores = true
+                        }
                     
                     Spacer()
                     
@@ -66,6 +70,9 @@ struct ContentView: View {
                 .onDisappear {
                     audioPlayer.setVolume(1, fadeDuration: 3)
                 }
+        }
+        .fullScreenCover(isPresented: $openRecentScores) {
+            RecentScoresView()
         }
     }
     
