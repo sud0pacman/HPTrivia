@@ -11,6 +11,8 @@ struct RecentScores: View {
     @Environment(Game.self) private var game
     @Binding var animateViewsIn: Bool
     
+    private let indices: [Int] = Array(0..<3)
+    
     var body: some View {
         VStack {
             if animateViewsIn {
@@ -18,10 +20,12 @@ struct RecentScores: View {
                     Text("Recent Scores")
                         .font(.title2)
                     
-                    ForEach(game.recentScores, id: \.self) { score in
+                    ForEach(indices, id: \.self) { i in
+                        let score = game.recentScores[i]
                         Text("\(score.name): \(score.score)")
                             .font(.title2)
                     }
+                    
                 }
                 .font(.title)
                 .foregroundStyle(.white)
