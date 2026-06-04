@@ -9,9 +9,12 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
+    @Environment(Game.self) var game
     @State private var audioPlayer: AVAudioPlayer!
     @State private var animationViewsIn = false
     @State private var playGame = false
+    @State private var name = ""
+    @State private var openGameScreen: Bool = false
     
     var body: some View {
         GeometryReader { geo in
@@ -39,7 +42,23 @@ struct ContentView: View {
             animationViewsIn = true
             playAudio()
         }
-        .fullScreenCover(isPresented: $playGame) {
+        .alert("Enter your name", isPresented: $playGame) {
+            TextField("John Doe", text: $name)
+                .textInputAutocapitalization(.words)
+            
+            Button("Cancel", role: .cancel) {
+                withAnimation {
+                    playGame = false
+                }
+            }
+            Button("Save", role: .confirm) {
+                game.playerName = name.isEmpty ? "Guest" : name
+                openGameScreen = !name.isEmpty
+            }
+        } message: {
+            Text("Please type your display name below.")
+        }
+        .fullScreenCover(isPresented: $openGameScreen) {
             GamePlay()
                 .onAppear {
                     audioPlayer.setVolume(0, fadeDuration: 2)

@@ -40,7 +40,7 @@ struct GamePlay: View {
                 VStack {
                     // MARK: Controls
                     HStack {
-                        Button("End Game") {
+                        Button("End Game \(game.playerName)") {
                             game.endGame()
                             dismiss()
                         }

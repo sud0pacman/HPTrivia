@@ -13,7 +13,7 @@ class Game {
     
     var gameScore = 0
     var questionScore = 0
-    var recentScores = Array(repeating: 0, count: 3)
+    var recentScores: [PlayerScore] = (0..<3).map { _ in PlayerScore() }
     
     var activeQuestion: [Question] = []
     var answeredQuestions: [Int] = []
@@ -21,6 +21,8 @@ class Game {
     var answers: [String] = []
     
     let savePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appending(path: "RecentScores")
+    
+    var playerName: String = ""
     
     init() {
         loadScores()
@@ -69,7 +71,7 @@ class Game {
     func endGame() {
         recentScores[2] = recentScores[1]
         recentScores[1] = recentScores[0]
-        recentScores[0] = gameScore
+        recentScores[0] = PlayerScore(score: gameScore, name: playerName)
         saveScores()
         
         gameScore = 0
@@ -89,9 +91,9 @@ class Game {
     func loadScores() {
         do {
             let data = try Data(contentsOf: savePath)
-            recentScores = try JSONDecoder().decode([Int].self, from: data)
+            recentScores = try JSONDecoder().decode([PlayerScore].self, from: data)
         } catch {
-            recentScores = [0, 0, 0]
+            recentScores = (0..<3).map { _ in PlayerScore() }
         }
     }
 }

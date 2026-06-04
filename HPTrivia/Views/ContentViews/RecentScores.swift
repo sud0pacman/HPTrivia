@@ -18,9 +18,10 @@ struct RecentScores: View {
                     Text("Recent Scores")
                         .font(.title2)
                     
-                    Text("\(game.recentScores[0])")
-                    Text("\(game.recentScores[1])")
-                    Text("\(game.recentScores[2])")
+                    ForEach(game.recentScores, id: \.self) { score in
+                        Text("\(score.name): \(score.score)")
+                            .font(.title2)
+                    }
                 }
                 .font(.title)
                 .foregroundStyle(.white)
